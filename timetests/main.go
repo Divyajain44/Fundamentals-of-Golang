@@ -5,32 +5,37 @@ import (
 	"time"
 )
 
-func main() {
-	var st string
-	var et string
-	var tt string
-
-	fmt.Println("enter start time")
-	fmt.Scanln(&st)
-
-	fmt.Println("enter end time")
-	fmt.Scanln(&et)
-
-	fmt.Println("enter tentative time")
-	fmt.Scanln(&tt)
-	// fmt.Println(st)
-	// start_time := "4:04:17"
-	// end_time := "6:04:56"
-	// gtime := "5:45:59"
-
-	stime, _ := time.Parse("15:04:05", st)
-	etime, _ := time.Parse("15:04:05", et)
-	ttime, _ := time.Parse("15:04:05", tt)
-
-	if ttime.After(stime) && ttime.Before(etime) {
-		fmt.Println("true")
-	} else {
-		fmt.Println("false")
+func main(){
+	var start string
+	var end string
+	var ctime string
+	fmt.Println("Enter start time(hh:mm:ss)")
+	fmt.Scan(&start)
+	fmt.Println("enter end time(hh:mm:ss)")
+	fmt.Scan(&end)
+	fmt.Println("enter time to check (hh:mm:ss) ")
+	fmt.Scan(&ctime)
+	
+	newLayout := "15:04:05"
+	
+	cc,_ := time.Parse(newLayout, ctime)
+	
+	ss, _ := time.Parse(newLayout, start)
+	ee, _ := time.Parse(newLayout, end)
+	ans:=checkrange(ss,ee,cc)
+	
+	if ans{
+		fmt.Println("the given time is in range")
+	}else{
+		fmt.Println("time not in range")
 	}
 
+}
+
+func checkrange(start, end, check time.Time) bool {
+	if start.Before(end) {
+		return check.After(start) && check.Before(end)
+	}
+	
+	return start.Before(check) || end.After(check)
 }
