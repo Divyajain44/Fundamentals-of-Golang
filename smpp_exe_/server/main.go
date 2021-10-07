@@ -68,7 +68,6 @@ func main() {
 				go DeliverSmSend(ctx1, sm, ctx.Sess)
 				time.Sleep(1 * time.Minute)
 			case pdu.SubmitSmID:
-				// ctx1 := context.Background()
 				sm, err := ctx.SubmitSm()
 				if err != nil {
 					fail("Invalid PDU in context error: %+v", err)
@@ -79,12 +78,6 @@ func main() {
 				if err := ctx.Respond(resp, pdu.StatusOK); err != nil {
 					fail("Server can't respond to the submit_sm request: %+v", err)
 				}
-				// dm := &pdu.DeliverSm{
-				// 	SourceAddr:      srcAddr,
-				// 	DestinationAddr: dstAddr,
-				// 	ShortMessage:    msg,
-				// }
-				// go DeliverSmSend(ctx1, dm, ctx.Sess)
 			case pdu.UnbindID:
 				unb, err := ctx.Unbind()
 				if err != nil {

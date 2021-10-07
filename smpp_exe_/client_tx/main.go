@@ -26,7 +26,8 @@ func main() {
 
 	bc := smpp.BindConf{
 		Addr:     serverAddr,
-		SystemID: "ExampleClient",
+		SystemID: "beyhmqdy",
+		Password: "Wm4#lU@e",
 	}
 	sc := smpp.SessionConf{}
 	sess, err := smpp.BindTx(sc, bc)
